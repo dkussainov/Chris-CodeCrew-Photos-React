@@ -1,9 +1,9 @@
 import PostCard from "./PostCard";
 import { useNavigate } from "react-router-dom";
 
-function ProfileCard({ user, posts, deletePost }) {
+function ProfileCard({ user, posts, deletePost, descriptionAfterUpdate }) {
   const user_posts = posts.map((post) => {
-    return <PostCard deletePost={deletePost} key={post.id} post={post} />;
+    return <PostCard descriptionAfterUpdate={descriptionAfterUpdate} deletePost={deletePost} key={post.id} post={post} />;
   });
 
   const navigate = useNavigate();

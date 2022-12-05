@@ -1,9 +1,11 @@
 import Comment from "./Comment";
 import { useState } from "react";
 
-function PostCard({ post, deletePost }) {
+function PostCard({ post, deletePost, descriptionAfterUpdate }) {
   const [text, setText] = useState("");
   const [postComments, setPostComments] = useState(post.comments)
+  const [showEditForm, setShowEditForm] = useState(false)
+  const [updateForm, setUpdateForm] = useState("")
 
   console.log("comments:", postComments)
 
@@ -45,6 +47,28 @@ function PostCard({ post, deletePost }) {
       .then((newComment) => addComment(newComment));
   }
 
+  function handlePostUpdate(e) {
+    e.preventDefault()
+    fetch(`/posts/${post.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        description: updateForm,
+      }),
+    })
+    .then((r) => {
+      if (r.ok){
+        r.json().then((post) => descriptionAfterUpdate(post))
+      }
+      else {
+        r.json().then((err) => console.log(err.errors))
+      }
+    })
+  }
+console.log("updateForm:", updateForm)
+
   return (
     <div>
       <img
@@ -57,6 +81,16 @@ function PostCard({ post, deletePost }) {
       <p>{post.description}</p>
       <button>Like</button>
       <button onClick={handleDeletePost}>Delete Post</button>
+      <button type="button" onClick={() => setShowEditForm(!showEditForm)}> 
+      { showEditForm === true ? "Close"  : "Edit" }
+      </button>
+      {showEditForm ? (<form onSubmit={handlePostUpdate}>
+        <input
+        value={updateForm}
+        onChange={e=>setUpdateForm(e.target.value)}></input>
+        <button type="submit">Submit</button>
+      </form>) : <></>}
+     
       <h4>Comments</h4>
       {commentsList}
       <form onSubmit={handleSubmitComment}>
