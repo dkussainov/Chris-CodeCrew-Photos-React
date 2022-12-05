@@ -19,6 +19,17 @@ function Profile({ user }) {
     setPosts(postsAfterDelete);
   }
 
+  function descriptionAfterUpdate(updatedPost){
+    const postsAfterUpdate = posts.map((post) => {
+      if (post.id === updatedPost.id) {
+        return updatedPost; }
+        else {
+          return post;
+        }
+    })
+    setPosts(postsAfterUpdate);
+  }
+
   return (
     <div>
       {user ? (
@@ -31,7 +42,7 @@ function Profile({ user }) {
         </div>
       )}
       <div>
-        <ProfileCard user={user} posts={posts} deletePost={updateAfterDelete} />
+        <ProfileCard user={user} posts={posts} deletePost={updateAfterDelete} descriptionAfterUpdate={descriptionAfterUpdate} />
       </div>
     </div>
   );
