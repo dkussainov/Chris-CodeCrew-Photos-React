@@ -32,7 +32,7 @@ function Profile({ user }) {
 
   return (
     <div>
-      {user ? (
+      {/* {user ? (
         <div>
           <h2>{user.username}'s profile </h2>
         </div>
@@ -41,9 +41,9 @@ function Profile({ user }) {
           <h2>Login to use all features</h2>
         </div>
       )}
-      <div>
+      <div> */}
         <ProfileCard user={user} posts={posts} descriptionAfterUpdat={descriptionAfterUpdate}deletePost={updateAfterDelete} />
-      </div>
+      {/* </div> */}
     </div>
   );
 }

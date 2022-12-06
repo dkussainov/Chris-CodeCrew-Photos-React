@@ -17,7 +17,7 @@ function NavBar({ user }) {
     </div>
   </div>
   <div className="navbar-center">
-    <a className="btn btn-ghost normal-case text-xl">Chris' Code Crew Photos</a>
+    <a className="btn btn-ghost normal-case text-xl"><h4 className="logo">Anonygram</h4></a>
   </div>
   <div className="navbar-end">
     <button className="btn btn-ghost btn-circle">

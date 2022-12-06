@@ -49,7 +49,7 @@ function App() {
           <h4>Welcome, {user.username}</h4>
           </div>
       ) : (
-        <h4>Welcome</h4>
+        <h4 className="logo">Anonygram</h4>
       )}
         </div>
 
