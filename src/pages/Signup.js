@@ -44,47 +44,54 @@ function Signup({ user, setUser }) {
   }
 
   return (
-    <div>
-      <h1>Signup</h1>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <label>Username</label>
-          <input
-            type="text"
-            name="username"
-            value={form.username}
-            onChange={handleChange}
-          />
+    <div className="flex flex-col w-full lg:flex-row">
+      
+  <div className="grid flex-grow h-500 card bg-base-000 rounded-box place-items-center">
+  <div className="signup">
+    
+    <div className="mockup-phone">
+    <div className="camera"></div> 
+    <div className="display">
+    <div className="artboard artboard-demo phone-1">
+    
+    <h1>SIGN UP</h1>
+    <br></br>
+    <form onSubmit={handleSubmit}>
 
-          <label>Profile photo</label>
-          <input
-            type="text"
-            name="avatar"
-            value={form.avatar}
-            onChange={handleChange}
-          />
+{/* <label>Username</label> */}
+<input type="text" placeholder="Username" className="input input-bordered input-md w-full max-w-xs"
+value={form.username}
+onChange={handleChange} />
 
-          <label>Password</label>
-          <input
-            type="text"
-            name="password"
-            value={form.password}
-            onChange={handleChange}
-          />
+{/* <label>Profile photo</label> */}
+<input type="text" placeholder="Image" className="input input-bordered input-md w-full max-w-xs" value={form.avatar} onChange={handleChange}/>
 
-          <label>Confirm password</label>
-          <input
-            type="text"
-            name="passwordConfirmation"
-            value={form.passwordConfirmation}
-            onChange={handleChange}
-          />
+{/* <label>Password</label> */}
+<input type="text" placeholder="Password" className="input input-bordered input-md w-full max-w-xs" value={form.password} onChange={handleChange}/>
 
-          <button type="submit">Sign Up</button>
-        </form>
-      </div>
-      <div>{errors.map((e) => `${e}. `)}</div>
+{/* <label>Confirm password</label> */}
+<input type="text" placeholder="Password Confirmation" className="input input-bordered input-md w-full max-w-xs" value={form.passwordConfirmation} onChange={handleChange}/>
+
+<button type="submit" className="btn btn-block">Sign Up</button>
+
+</form>
+
+<div className = "signup-error">{errors.map((e) => `${e}. `)}</div>
     </div>
+    </div>
+    </div>
+
+  <div className="divider lg:divider-horizontal">
+  </div> 
+  <div className="grid flex-grow h-32 card bg-base-000 rounded-box place-items-center">
+
+</div>
+ 
+</div>
+</div>
+
+</div>
+
   );
 }
 

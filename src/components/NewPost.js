@@ -35,6 +35,7 @@ function NewPost() {
   }
 
   return (
+    
     <div>
       <form onSubmit={handleSubmit}>
         <label>Image link</label>

@@ -7,6 +7,8 @@ import Profile from "./Profile";
 import NewPost from "./NewPost";
 import { useState, useEffect } from "react";
 import Home from "../pages/Home";
+import "../App.css";
+import Footer from "./Footer";
 
 function App() {
   const [user, setUser] = useState(localStorage.getItem("user"));
@@ -37,17 +39,37 @@ function App() {
 
   return (
     <div className="App">
+      <div className="navbar bg-base-100">
+  <div className="flex-1">
+    <a className="btn btn-ghost normal-case text-xl">
+      
+    <div>
       {user ? (
         <div>
-          <h4>Chris'CodeCrew Photos</h4>
           <h4>Welcome, {user.username}</h4>
-        </div>
+          </div>
       ) : (
-        <h4>Chris'CodeCrew Photos</h4>
+        <h4>Welcome</h4>
       )}
-      <div>
-        <button onClick={handleClick}>Logout</button>
-      </div>
+        </div>
+
+      </a>
+  </div>
+  <div className="flex-none">
+    <button className="btn btn-square btn-ghost">
+      
+    {user ? (
+        <div>
+          <button onClick={handleClick}>Logout</button>
+          </div>
+      ) : (
+        <button>Log In</button>
+      )}
+        
+    </button>
+  </div>
+</div>
+
       <NavBar />
       <Routes>
         <Route exact path="/" element={<Home/>} />
@@ -69,7 +91,9 @@ function App() {
           element={<NewPost user={user} setUser={setUser} />}
         />
       </Routes>
+      <Footer />
     </div>
+ 
   );
 }
 

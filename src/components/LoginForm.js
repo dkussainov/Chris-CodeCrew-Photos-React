@@ -43,28 +43,29 @@ function LoginForm({setUser}) {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>Username</label>
-        <input
-          type="text"
-          name="username"
-          value={form.username}
-          onChange={handleChange}
-        />
 
-        <label>Password</label>
-        <input
-          type="text"
-          name="password"
-          value={form.password}
-          onChange={handleChange}
-        />
+    <>
 
-        <button type="submit">Log In</button>
+  <div className="form-control w-full max-w-xs">
+  <form onSubmit={handleSubmit}>
+  <label className="label"><span className="label-text">Username</span></label>
+  <input type="text" placeholder="Username" className="input input-bordered w-full max-w-xs"
+  value={form.username}
+  onChange={handleChange} />
+
+  <label className="label"><span className="label-text">Password</span></label>
+  <input type="text" placeholder="Username" className="input input-bordered w-full max-w-xs"
+  value={form.password}
+  onChange={handleChange} />
+
+<button type="submit" className="btn btn-wide">Log In</button>
       </form>
       <div>{errors.map((e) => `${e}. `)}</div>
     </div>
+
+
+
+    </>
   );
 }
 

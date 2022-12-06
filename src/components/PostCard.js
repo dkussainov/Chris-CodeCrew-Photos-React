@@ -70,20 +70,54 @@ function PostCard({ post, deletePost, descriptionAfterUpdate }) {
 console.log("updateForm:", updateForm)
 
   return (
+    <div className = "h-56 grid grid-cols-3 gap-4 content-center">
+    <div className="card w-96 bg-base-100 shadow-xl">
+  <figure><img src={post.image_url}
+    alt={post.description}
+    width="450"
+    height="500"/></figure>
+  <div className="card-body">
+    <div className="card-buttons">
+        <button><span class="material-symbols-outlined">favorite</span></button>
+        <button><span class="material-symbols-outlined">mode_comment</span></button>
+        <buton><span class="material-symbols-outlined">bookmark</span></buton>
+      </div>
+    <h2 className="card-title">{post.description}</h2>
+    <p>If a dog chews shoes whose shoes does he choose?</p>
+    <button type="button" onClick={() => setShowEditForm(!showEditForm)}>
+            {showEditForm === true ? <span class="material-symbols-outlined"> close </span>
+              : <span class="material-symbols-outlined">edit_note</span>}
+          </button>
+          <button onClick={handleDeletePost}><span class="material-symbols-outlined">delete</span></button>
+          <form onSubmit={handleSubmitComment}>
+        <input
+          name="comment"
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+      <button type="submit" className="btn btn-primary">Post</button>
+      </form>
+      </div>
+
+
+
+
     <div>
-      <img
-        src={post.image_url}
-        alt={post.description}
-        width="450"
-        height="500"
-      />
+      {/* <div>
+<img width="150" height="150" src={user.avatar} alt={user.username} />
+<p>{user.bio}</p>
+<h3>Posts</h3>
+  <button onClick={handleNewPostClick}>New Post</button>
+  {user_posts}
+</div> */}
+
+
+
+      
       <h4>{post.likes.map((like) => like.likes_num)}</h4>
-      <p>{post.description}</p>
-      <button>Like</button>
-      <button onClick={handleDeletePost}>Delete Post</button>
-      <button type="button" onClick={() => setShowEditForm(!showEditForm)}> 
-      { showEditForm === true ? "Close"  : "Edit" }
-      </button>
+
+    
       {showEditForm ? (<form onSubmit={handlePostUpdate}>
         <input
         value={updateForm}
@@ -91,18 +125,12 @@ console.log("updateForm:", updateForm)
         <button type="submit">Submit</button>
       </form>) : <></>}
      
-      <h4>Comments</h4>
+      {/* <h4>Comments</h4> */}
       {commentsList}
-      <form onSubmit={handleSubmitComment}>
-        <input
-          name="comment"
-          type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <button type="submit">Comment</button>
-      </form>
-    </div>
+</div></div>
+
+</div>
+
   );
 }
 

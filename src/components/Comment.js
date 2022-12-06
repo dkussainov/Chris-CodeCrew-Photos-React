@@ -16,7 +16,7 @@ function Comment({ comment, post, updateComments }) {
         height="50"
       />
       <h4>{comment.commented_user.username}</h4>
-      <button onClick={handleDeleteComment} >X</button>
+      <button className="deletecomment" onClick={handleDeleteComment} >X</button>
       <p>{comment.text}</p>
     </div>
   );
