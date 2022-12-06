@@ -67,3 +67,7 @@ input{
   padding-top: 10px;
 }
 
+.App{
+  background-color: blueviolet;
+  color: white;
+}

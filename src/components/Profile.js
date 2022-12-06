@@ -42,7 +42,9 @@ function Profile({ user }) {
         </div>
       )}
       <div> */}
-        <ProfileCard user={user} posts={posts} descriptionAfterUpdat={descriptionAfterUpdate}deletePost={updateAfterDelete} />
+
+      
+        <ProfileCard user={user} posts={posts} descriptionAfterUpdate={descriptionAfterUpdate}deletePost={updateAfterDelete} />
       {/* </div> */}
     </div>
   );

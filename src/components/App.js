@@ -38,37 +38,28 @@ function App() {
   }
 
   return (
+    <>
     <div className="App">
-      <div className="navbar bg-base-100">
-  <div className="flex-1">
-    <a className="btn btn-ghost normal-case text-xl">
-      
-    <div>
-      {user ? (
-        <div>
-          <h4>Welcome, {user.username}</h4>
-          </div>
-      ) : (
-        <h4 className="logo">Anonygram</h4>
-      )}
-        </div>
 
-      </a>
-  </div>
-  <div className="flex-none">
-    <button className="btn btn-square btn-ghost">
-      
-    {user ? (
-        <div>
-          <button onClick={handleClick}>Logout</button>
+      <div className="navbar">
+        <div className="navbar bg-base-000">
+          <div className="flex-1">
+            <a className="btn btn-ghost normal-case text-xl">
+              <div>
+              {user ? (<div><h4>Welcome, {user.username}</h4></div>) : (<h4 className="logo">Anonygram</h4>)}
+              </div>
+            </a>
           </div>
-      ) : (
-        <button>Log In</button>
-      )}
-        
-    </button>
-  </div>
-</div>
+        <div className="flex-none">
+          <button className="btn btn-square btn-ghost">
+          {user ? (<div><button onClick={handleClick}>Logout</button></div>) : (<button>Log In</button>)}
+          </button>
+        </div>
+      </div>
+
+    </div>
+    </div>
+
 
       <NavBar />
       <Routes>
@@ -92,7 +83,8 @@ function App() {
         />
       </Routes>
       <Footer />
-    </div>
+
+      </>
  
   );
 }

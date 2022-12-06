@@ -35,28 +35,17 @@ function NewPost() {
   }
 
   return (
-    
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>Image link</label>
-        <input
-          type="text"
-          name="image_url"
-          value={post.image_url}
-          onChange={handleChange}
-        />
-
-        <label>Description</label>
-        <input
-          type="text"
-          name="description"
-          value={post.description}
-          onChange={handleChange}
-        />
-
-        <button type="submit>">Post</button>
-      </form>
-    </div>
+  <div className="form-control w-full max-w-xs">
+    <form onSubmit={handleSubmit}>
+      <label className="label"><span className="label-text">Image URL</span></label>
+        <input type="text" placeholder="Image URL" className="input input-bordered w-full max-w-xs"
+          value={post.image_url} onChange={handleChange}name="image_url"/>
+      <label className="label"><span className="label-text">Description</span></label>
+        <input type="text" placeholder="Description" className="input input-bordered w-full max-w-xs"
+        name="description" value={post.description} onChange={handleChange}/>
+      <button type="submit" className="btn btn-wide">POST</button>
+    </form>
+  </div>
   );
 }
 export default NewPost;
