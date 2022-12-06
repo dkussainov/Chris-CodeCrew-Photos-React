@@ -50,13 +50,17 @@ function LoginForm({setUser}) {
   <form onSubmit={handleSubmit}>
   <label className="label"><span className="label-text">Username</span></label>
   <input type="text" placeholder="Username" className="input input-bordered w-full max-w-xs"
-  value={form.username}
-  onChange={handleChange} />
+value={form.username}
+  onChange={handleChange}
+  name="username"
+   />
+
 
   <label className="label"><span className="label-text">Password</span></label>
   <input type="text" placeholder="Username" className="input input-bordered w-full max-w-xs"
   value={form.password}
-  onChange={handleChange} />
+  onChange={handleChange} 
+  name="password"/>
 
 <button type="submit" className="btn btn-wide">Log In</button>
       </form>

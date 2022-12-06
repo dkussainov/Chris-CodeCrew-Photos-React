@@ -79,19 +79,20 @@ function Login({setUser}) {
     
         {/* <label>Username</label> */}
         <input type="text" placeholder="Username" className="input input-bordered input-md w-full max-w-xs"
-         />
+         value={form.username}
+         onChange={handleChange}
+         name = "username"/>
 
-{/* value={form.username}
-        onChange={handleChange} */}
+
     
         {/* <label>Profile photo</label> */}
-        <input type="text" placeholder="Image" className="input input-bordered input-md w-full max-w-xs" value={form.avatar} onChange={handleChange}/>
+        <input type="text" placeholder="Image" className="input input-bordered input-md w-full max-w-xs" value={form.avatar} onChange={handleChange} name="avatar"/>
         
         {/* <label>Password</label> */}
-        <input type="text" placeholder="Password" className="input input-bordered input-md w-full max-w-xs" value={form.password} onChange={handleChange}/>
+        <input type="text" placeholder="Password" className="input input-bordered input-md w-full max-w-xs" value={form.password} onChange={handleChange} name="password"/>
         
         {/* <label>Confirm password</label> */}
-        <input type="text" placeholder="Password Confirmation" className="input input-bordered input-md w-full max-w-xs" value={form.passwordConfirmation} onChange={handleChange}/>
+        <input type="text" placeholder="Password Confirmation" className="input input-bordered input-md w-full max-w-xs" value={form.passwordConfirmation} onChange={handleChange} name="passwordConfirmation"/>
         
         <button type="submit" className="btn btn-block">Sign Up</button>
     
