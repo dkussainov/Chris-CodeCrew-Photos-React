@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import HomePostComment from "./HomePostComment";
 
 function HomePostCard({ post }) {
@@ -8,6 +8,7 @@ function HomePostCard({ post }) {
   function addComment(newComment) {
     setPostComments([...postComments, newComment]);
   }
+
 
   function handleSubmitComment(e) {
     e.preventDefault();
@@ -23,6 +24,8 @@ function HomePostCard({ post }) {
       .then((r) => r.json())
       .then((newComment) => addComment(newComment));
   }
+
+ 
 
   const commentList = postComments.map((comment) => (
     <HomePostComment key={comment.id} comment={comment} />
