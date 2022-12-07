@@ -30,7 +30,7 @@ function ProfileCard({ user, posts, deletePost, descriptionAfterUpdate }) {
           </div>
           </figure>
           <div className="card-body">
-        <h2 className="card-title">{user.username}</h2>
+        {/* <h2 className="card-title">{user.username}</h2> */}
         <p>{user.bio}</p>
       
       <div className="card-actions justify-center">
@@ -45,23 +45,14 @@ function ProfileCard({ user, posts, deletePost, descriptionAfterUpdate }) {
      <h4 className="posttitle">Posts</h4>
      
      <div className="postcontainer">
-     {/* <div className="flex flex-col w-full"> */}
-     {/* <div className="grid h-20 card bg-base-000 rounded-box place-items-center"> */}
-    {/* <div className="card w-96 bg-base-100 shadow-xl"> */}
 
-    {/* <div className="flex flex-col w-full lg:flex-row">
-  <div className="grid flex-grow h-32 card bg-base-300 rounded-box place-items-center"> */}
+         
           {user_posts}
 
-          {/* </div> */}
-
-          {/* </div>  */}
-          {/* </div> */}
-          {/* </div> */}
           </div>
           
 </div>
-// </div>
+
 
 
 

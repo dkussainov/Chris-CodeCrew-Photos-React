@@ -60,9 +60,8 @@ function NewPost() {
         onChange={handleChange}/>
 
       <button type="submit" className="btn btn-wide">POST</button>
-
+      
     </form>
-    
   </div>
   );
 }
