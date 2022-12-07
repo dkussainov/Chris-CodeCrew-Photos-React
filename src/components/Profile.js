@@ -30,9 +30,11 @@ function Profile({ user }) {
     setPosts(postsAfterUpdate);
   }
 
+  
+
   return (
     <div>
-      {/* {user ? (
+      {user ? (
         <div>
           <h2>{user.username}'s profile </h2>
         </div>
@@ -41,11 +43,12 @@ function Profile({ user }) {
           <h2>Login to use all features</h2>
         </div>
       )}
-      <div> */}
+      <div>
 
       
-        <ProfileCard user={user} posts={posts} descriptionAfterUpdate={descriptionAfterUpdate}deletePost={updateAfterDelete} />
-      {/* </div> */}
+      <ProfileCard user={user} posts={posts} deletePost={updateAfterDelete} descriptionAfterUpdate={descriptionAfterUpdate} />
+      
+      </div>
     </div>
   );
 }

@@ -82,17 +82,19 @@ console.log("updateForm:", updateForm)
       />
     </figure>
 
+
     <div className="card-body">
 
     <h4>{post.likes.map((like) => like.likes_num)}</h4>
 
+    <div className="cardbtns">
     <button><span class="material-symbols-outlined">favorite</span></button>
+    <button onClick={handleDeletePost}><span class="material-symbols-outlined">delete</span></button>
+    </div>
+
     <h2 className="card-title">{post.description}</h2>
 
-    <button onClick={handleDeletePost}><span class="material-symbols-outlined">delete</span></button>
-    <button type="button" onClick={() => setShowEditForm(!showEditForm)}> 
-        { showEditForm === true ? <span class="material-symbols-outlined"> close </span>  : <span class="material-symbols-outlined">edit_note</span>}
-    </button>
+    <div className="inputchange">
     {showEditForm ? (<form onSubmit={handlePostUpdate}>
         <input
         className="input input-bordered input-xs w-full max-w-xs"
@@ -101,6 +103,10 @@ console.log("updateForm:", updateForm)
         onChange={e=>setUpdateForm(e.target.value)}></input>
         <button className="btn btn-xs" type="submit">Submit</button>
       </form>) : <></>}
+      <button type="button" onClick={() => setShowEditForm(!showEditForm)}> 
+        { showEditForm === true ? <span class="material-symbols-outlined"> close </span>  : <span class="material-symbols-outlined">edit_note</span>}
+      </button>
+      </div>
   
 
     <h4>Comments</h4>
@@ -120,6 +126,7 @@ console.log("updateForm:", updateForm)
     </div>
     </div>
     </div>
+
 
   );
 }

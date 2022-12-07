@@ -12,8 +12,8 @@ function ProfileCard({ user, posts, deletePost, descriptionAfterUpdate }) {
   }
 
   return (
-    <>
-    <div className="flex flex-col w-full">
+    <div>
+          <div className="h-full flex flex-col w-full">
       <div className="grid h-flex card bg-base-000 rounded-box place-items-left">
         <div className="card w-96 bg-base-100 shadow-xl">
           
@@ -29,8 +29,7 @@ function ProfileCard({ user, posts, deletePost, descriptionAfterUpdate }) {
             </div>
           </div>
           </figure>
-
-        <div className="card-body">
+          <div className="card-body">
         <h2 className="card-title">{user.username}</h2>
         <p>{user.bio}</p>
       
@@ -41,21 +40,37 @@ function ProfileCard({ user, posts, deletePost, descriptionAfterUpdate }) {
     </div>
 
     </div> 
-    </div>
-    
-        <div className = "postdiv">
-        <h4>Posts</h4>
-        {/* <div className="divider"> */}
-         <ul>
-          <li>
-          {user_posts}
-          </li>
-          </ul> 
-        </div>
-      {/* </div> */}
-      </>
-    
+    </div> 
 
+     <h4 className="posttitle">Posts</h4>
+     
+     <div className="postcontainer">
+     {/* <div className="flex flex-col w-full"> */}
+     {/* <div className="grid h-20 card bg-base-000 rounded-box place-items-center"> */}
+    {/* <div className="card w-96 bg-base-100 shadow-xl"> */}
+
+    {/* <div className="flex flex-col w-full lg:flex-row">
+  <div className="grid flex-grow h-32 card bg-base-300 rounded-box place-items-center"> */}
+          {user_posts}
+
+          {/* </div> */}
+
+          {/* </div>  */}
+          {/* </div> */}
+          {/* </div> */}
+          </div>
+          
+</div>
+// </div>
+
+
+
+
+      
+    
+        
+       
+ 
 
   );
 }
