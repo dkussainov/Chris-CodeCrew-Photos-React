@@ -6,6 +6,7 @@ function PostCard({ post, deletePost, descriptionAfterUpdate }) {
   const [postComments, setPostComments] = useState(post.comments)
   const [showEditForm, setShowEditForm] = useState(false)
   const [updateForm, setUpdateForm] = useState("")
+  const [like, setLike] = useState(true)
 
   console.log("comments:", postComments)
 
@@ -90,7 +91,21 @@ console.log("updateForm:", updateForm)
     <h4>{post.likes.map((like) => like.likes_num)}</h4>
 
     <div className="cardbtns">
-    <button><span class="material-symbols-outlined">favorite</span></button>
+
+    {like ? (
+
+<button onClick={() => setLike(false)}>
+  <span class="material-symbols-outlined">&#9825;</span>
+</button>
+)
+: ( 
+  <button onClick={() => setLike(true)}>
+  <span class="material-symbols-outlined">&#9829;</span>
+</button>
+)}
+
+
+
     <button onClick={handleDeletePost}><span class="material-symbols-outlined">delete</span></button>
     </div>
 
