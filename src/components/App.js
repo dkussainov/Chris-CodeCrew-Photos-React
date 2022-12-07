@@ -45,9 +45,14 @@ function App() {
         <div className="navbar bg-base-000">
           <div className="flex-1">
             <a className="btn btn-ghost normal-case text-xl">
+              
+              
               <div>
               {user ? (<div><h4>Welcome, {user.username}</h4></div>) : (<h4 className="logo">Anonygram</h4>)}
               </div>
+
+
+
             </a>
           </div>
         <div className="flex-none">
@@ -62,8 +67,9 @@ function App() {
 
 
       <NavBar />
+
       <Routes>
-        <Route exact path="/" element={<Home/>} />
+        <Route exact path="/" element={<Home user={user} />} />
 
         <Route path="/login" element={<Login setUser={setUser} />} />
 
@@ -81,7 +87,9 @@ function App() {
           path="/newpost"
           element={<NewPost user={user} setUser={setUser} />}
         />
+
       </Routes>
+      
       <Footer />
 
       </>

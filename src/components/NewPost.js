@@ -36,15 +36,33 @@ function NewPost() {
 
   return (
   <div className="form-control w-full max-w-xs">
+
     <form onSubmit={handleSubmit}>
+
       <label className="label"><span className="label-text">Image URL</span></label>
-        <input type="text" placeholder="Image URL" className="input input-bordered w-full max-w-xs"
-          value={post.image_url} onChange={handleChange}name="image_url"/>
+
+        <input 
+        type="text" 
+        placeholder="Image URL" 
+        className="input input-bordered w-full max-w-xs"
+        value={post.image_url} 
+        onChange={handleChange}
+        name="image_url"/>
+
       <label className="label"><span className="label-text">Description</span></label>
-        <input type="text" placeholder="Description" className="input input-bordered w-full max-w-xs"
-        name="description" value={post.description} onChange={handleChange}/>
+
+        <input 
+        type="text" 
+        placeholder="Description" 
+        className="input input-bordered w-full max-w-xs"
+        name="description" 
+        value={post.description} 
+        onChange={handleChange}/>
+
       <button type="submit" className="btn btn-wide">POST</button>
+
     </form>
+    
   </div>
   );
 }

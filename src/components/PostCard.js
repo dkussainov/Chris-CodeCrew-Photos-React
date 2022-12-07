@@ -70,8 +70,7 @@ function PostCard({ post, deletePost, descriptionAfterUpdate }) {
 console.log("updateForm:", updateForm)
 
   return (
-<div>
-    
+  <div>
     <div className = "h-56 grid grid-cols-3 gap-4 content-center">
     <div className="card w-96 bg-base-100 shadow-xl">
     
@@ -79,31 +78,34 @@ console.log("updateForm:", updateForm)
       <img src={post.image_url}
         alt={post.description}
         width="450"
-        height="500"/>
+        height="500"
+      />
     </figure>
 
     <div className="card-body">
 
     <h4>{post.likes.map((like) => like.likes_num)}</h4>
+
     <button><span class="material-symbols-outlined">favorite</span></button>
-    <button onClick={handleDeletePost}><span class="material-symbols-outlined">delete</span></button>
-
-    <div className="commentbox">
     <h2 className="card-title">{post.description}</h2>
+
+    <button onClick={handleDeletePost}><span class="material-symbols-outlined">delete</span></button>
     <button type="button" onClick={() => setShowEditForm(!showEditForm)}> 
-        { showEditForm === true ? <span class="material-symbols-outlined"> close </span>  : <span class="material-symbols-outlined">edit_note</span> }
-        </button>
-    </div>
-    {/* <p>If a dog chews shoes whose shoes does he choose?</p> */}
+        { showEditForm === true ? <span class="material-symbols-outlined"> close </span>  : <span class="material-symbols-outlined">edit_note</span>}
+    </button>
+    {showEditForm ? (<form onSubmit={handlePostUpdate}>
+        <input
+        className="input input-bordered input-xs w-full max-w-xs"
+        placeholder="Edit Caption"
+        value={updateForm}
+        onChange={e=>setUpdateForm(e.target.value)}></input>
+        <button className="btn btn-xs" type="submit">Submit</button>
+      </form>) : <></>}
+  
 
-
-    {/* <button type="button" onClick={() => setShowEditForm(!showEditForm)}>
-            {showEditForm === true ? <span class="material-symbols-outlined"> close </span>
-              : <span class="material-symbols-outlined">edit_note</span>}
-          </button> */}
-          
-         
-        <form onSubmit={handleSubmitComment}>
+    <h4>Comments</h4>
+      {commentsList}
+      <form onSubmit={handleSubmitComment}>
         <input
           placeholder="comment" className="input input-bordered input-s w-full max-w-xs"
           name="comment"
@@ -111,42 +113,13 @@ console.log("updateForm:", updateForm)
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-         <button type="submit" className="btn btn-secondary justify-right">Post</button>
-         </form>
-       </div>
+        <button type="submit" className="btn btn-secondary justify-right">Comment</button>
+      </form>
+    </div>
 
-      </div>
-
-
-
-
-    <div>
-      {/* <div>
-<img width="150" height="150" src={user.avatar} alt={user.username} />
-<p>{user.bio}</p>
-<h3>Posts</h3>
-  <button onClick={handleNewPostClick}>New Post</button>
-  {user_posts}
-</div>
-
-
-
-      
-      <h4>{post.likes.map((like) => like.likes_num)}</h4>
-
-    
-      showEditForm ? (<form onSubmit={handlePostUpdate}>
-        <input
-        value={updateForm}
-        onChange={e=>setUpdateForm(e.target.value)}></input>
-        <button type="submit">Submit</button>
-      </form>) : <></>
-     
-      {/* <h4>Comments</h4> */}
-      {/* {commentsList} */}
-      </div>
-
-</div></div>
+    </div>
+    </div>
+    </div>
 
   );
 }

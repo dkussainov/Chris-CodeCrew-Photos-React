@@ -1,14 +1,20 @@
 function HomePostComment({ comment }) {
   return (
     <div>
+      <div className="avatar">
+      <div className="w-10 rounded-full">
       <img
         src={comment.commented_user.avatar}
         alt={comment.commented_user.username}
-        width="50"
-        height="50"
+        width="20"
+        height="20"
       />
-      <h4>{comment.commented_user.username}</h4>
-      <p>{comment.text}</p>
+      </div>
+      <h4>{comment.commented_user.username}: {comment.text}</h4>
+      </div>
+      <div>
+
+      </div>
     </div>
   );
 }
