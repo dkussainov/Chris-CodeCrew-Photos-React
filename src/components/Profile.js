@@ -36,7 +36,7 @@ function Profile({ user }) {
     <div>
       {user ? (
         <div>
-          <h2>{user.username}'s profile </h2>
+          <h3 className="card-title">{user.username}'s profile </h3>
         </div>
       ) : (
         <div>

@@ -30,7 +30,7 @@ function ProfileCard({ user, posts, deletePost, descriptionAfterUpdate }) {
           </div>
           </figure>
           <div className="card-body">
-        <h2 className="card-title">{user.username}</h2>
+        {/* <h2 className="card-title">{user.username}</h2> */}
         <p>{user.bio}</p>
       
       <div className="card-actions justify-center">
