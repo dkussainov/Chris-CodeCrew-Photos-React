@@ -57,7 +57,7 @@ value={form.username}
 
 
   <label className="label"><span className="label-text">Password</span></label>
-  <input type="text" placeholder="Username" className="input input-bordered w-full max-w-xs"
+  <input type="password" placeholder="Password" className="input input-bordered w-full max-w-xs"
   value={form.password}
   onChange={handleChange} 
   name="password"/>

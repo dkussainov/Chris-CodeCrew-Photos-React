@@ -71,7 +71,9 @@ console.log("updateForm:", updateForm)
 
   return (
   <div>
-    <div className = "h-56 grid grid-cols-3 gap-4 content-center">
+    <br></br>
+    <br></br>
+    <div className="grid place-items-center">
     <div className="card w-96 bg-base-100 shadow-xl">
     
     <figure>
@@ -125,7 +127,10 @@ console.log("updateForm:", updateForm)
 
     </div>
     </div>
+    <br></br>
+    <br></br>
     </div>
+
 
 
   );

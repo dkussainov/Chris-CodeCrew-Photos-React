@@ -45,11 +45,10 @@ function Profile({ user }) {
       )}
       <div>
 
-      
       <ProfileCard user={user} posts={posts} deletePost={updateAfterDelete} descriptionAfterUpdate={descriptionAfterUpdate} />
-      
       </div>
-    </div>
+      </div>
+
   );
 }
 
