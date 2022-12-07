@@ -4,6 +4,7 @@ import HomePostComment from "./HomePostComment";
 function HomePostCard({ post }) {
   const [text, setText] = useState("");
   const [postComments, setPostComments] = useState(post.comments);
+  const [like, setLike] = useState(true)
 
   function addComment(newComment) {
     setPostComments([...postComments, newComment]);
@@ -23,6 +24,7 @@ function HomePostCard({ post }) {
       .then((r) => r.json())
       .then((newComment) => addComment(newComment));
   }
+
 
   const commentList = postComments.map((comment) => (
     <HomePostComment key={comment.id} comment={comment} />
@@ -48,9 +50,18 @@ function HomePostCard({ post }) {
           <div className="card-body">
 
             <div className="card-buttons">
-              <button><span class="material-symbols-outlined">favorite</span></button>
-              {/* <button><span class="material-symbols-outlined">mode_comment</span></button>
-              <buton><span class="material-symbols-outlined">bookmark</span></buton> */}
+              {like ? (
+
+                <button onClick={() => setLike(false)}>
+                  <span class="material-symbols-outlined">&#9825;</span>
+                </button>
+              )
+                : ( 
+                  <button onClick={() => setLike(true)}>
+                  <span class="material-symbols-outlined">&#9829;</span>
+                </button>
+                )}
+
             </div>
 
           <h1 className="card-title">
@@ -76,7 +87,7 @@ function HomePostCard({ post }) {
   </div>
 </div>
   </div> 
-  <div className="divider"></div> 
+  <br></br><br></br>
 </div> 
 </div>
 
