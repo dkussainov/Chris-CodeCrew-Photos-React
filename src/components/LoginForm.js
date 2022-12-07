@@ -34,8 +34,12 @@ function LoginForm({setUser}) {
       }),
     }).then((r) => {
       if (r.ok) {
-          r.json().then((currentUser) => setUser(currentUser));
-          navigate("/")
+          r.json().then((currentUser) => {
+            setUser(currentUser)
+            localStorage.setItem("user", currentUser.username);
+          });
+          
+          navigate("/");
         } else {
             r.json().then((err) => setErrors(err.errors));
       }
