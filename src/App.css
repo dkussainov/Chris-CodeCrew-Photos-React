@@ -108,8 +108,7 @@ input{
   font-size: 20px;
   font-weight: 500;
 }
-/* .postcontainer{
-  margin-top: 30%;
-  margin-bottom: 100%;
-  height: flex;
-} */
+
+.usercom{
+  font-weight: 600;
+}

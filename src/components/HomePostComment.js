@@ -10,7 +10,11 @@ function HomePostComment({ comment }) {
         height="20"
       />
       </div>
-      <h4>{comment.commented_user.username}: {comment.text}</h4>
+      &nbsp;
+      &nbsp;
+      <h4><strong>{comment.commented_user.username}: &nbsp;</strong></h4>
+      <br></br>
+        <h4> {comment.text}</h4>
       </div>
       <div>
 

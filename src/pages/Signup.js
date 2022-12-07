@@ -71,13 +71,13 @@ onChange={handleChange}
 name="avatar" />
 
 {/* <label>Password</label> */}
-<input type="text" placeholder="Password" className="input input-bordered input-md w-full max-w-xs" 
+<input type="password" placeholder="Password" className="input input-bordered input-md w-full max-w-xs" 
 value={form.password} 
 onChange={handleChange}
 name="password"/>
 
 {/* <label>Confirm password</label> */}
-<input type="text" placeholder="Password Confirmation" className="input input-bordered input-md w-full max-w-xs" 
+<input type="password" placeholder="Password Confirmation" className="input input-bordered input-md w-full max-w-xs" 
 value={form.passwordConfirmation} 
 onChange={handleChange}
 name="passwordConfirmation"/>
