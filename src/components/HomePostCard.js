@@ -64,6 +64,8 @@ function HomePostCard({ post }) {
           <form onSubmit={handleSubmitComment}>
             <input
               name="comment"
+              placeholder="Add a comment"
+              className="input input-bordered input-xs w-full max-w-xs"
               type="text"
               value={text}
               onChange={(e) => setText(e.target.value)}
