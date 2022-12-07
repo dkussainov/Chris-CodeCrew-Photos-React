@@ -71,3 +71,16 @@ input{
   background-color: blueviolet;
   color: white;
 }
+
+.profileuser{
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.divider{
+  height: flex;
+  margin-top: 0px;
+}
+
+
