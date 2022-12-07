@@ -14,9 +14,9 @@ function App() {
   const [user, setUser] = useState(localStorage.getItem("user"));
   console.log("user:", user);
 
-  useEffect(() => {
-    localStorage.setItem("user", user);
-  }, [user]);
+  // useEffect(() => {
+  //   localStorage.setItem("user", user);
+  // }, [user]);
 
   const navigate = useNavigate();
 
@@ -32,7 +32,8 @@ function App() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
         setUser(null);
-        navigate("/");
+        localStorage.removeItem("user");
+        navigate("/login");
       }
     });
   }
