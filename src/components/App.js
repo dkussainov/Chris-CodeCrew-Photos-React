@@ -28,6 +28,12 @@ function App() {
     });
   }, []);
 
+  // if(user) {
+
+  // }else {
+  //   null
+  // }
+
   function handleClick() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
