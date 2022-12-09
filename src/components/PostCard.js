@@ -1,39 +1,83 @@
 import Comment from "./Comment";
+
 import { useState, useEffect } from "react";
 
-function PostCard({ post, deletePost, descriptionAfterUpdate }) {
+function PostCard({ post, deletePost, descriptionAfterUpdate, user }) {
   const [text, setText] = useState("");
   const [postComments, setPostComments] = useState(post.comments);
   const [showEditForm, setShowEditForm] = useState(false);
   const [updateForm, setUpdateForm] = useState("");
-  const [like, setLike] = useState(true);
+
+
+  // Set All Likes
+  const [likes, setLikes] = useState(post.likes);
+  console.log("likes: ", likes);
+  // Set Like Button
+  const [isLiked, setIsLiked] = useState(false);
+  console.log("like: ", isLiked);
+  // Set Current Like
   const [currentLike, setCurrentLike] = useState({});
+  console.log("currentLike: ", currentLike);
+  // Set Likes Count
+  const [likesCount, setLikesCount] = useState(post.likes.length);
+  console.log("likesCount: ", likesCount);
+
+  
+
+  // Fetch All Likes
+  useEffect(()=>{
+    fetch(`/posts/${post.id}`)
+    .then(r => r.json())
+    .then(post => {
+      setCurrentLike(post.likes.find(like => like.post_id === post.id))
+      
+      // is this post already liked from the user?
+      console.log("isLiked: ", isLiked);
+      
+      if (post.likes.find(like => like.user_id === user.id)) {
+        setIsLiked(true);
+      }
+      }
+    )
+  },[])
+
+  // if(currentLike.length > 0) {
+  //   setIsLiked(true)
+  // } else
+  // setIsLiked(false)
 
 
-  console.log("comments:", postComments);
+  // Post Like
 
-  useEffect(() => {
-    fetch("/likes")
-      .then((r) => r.json())
-      .then((likes) => console.log(likes));
-  });
-
-  function handlelikePost(e) {
+  function handleLike(e) {
     e.preventDefault();
     fetch(`/posts/${post.id}/likes`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ liked: like }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        post_id: post.id,
+        user_id: user.id,
+      }),
     })
       .then((r) => r.json())
-      .then((like) => setCurrentLike(like));
+      .then((like) => {
+        setCurrentLike(like);
+      });
+    setIsLiked(true);
+    setLikesCount(likesCount + 1);
   }
 
-  function handleUnlikePost(e) {
+
+  // Delete Like
+  function handleDeleteLike(e) {
     e.preventDefault();
-    fetch(`/posts/${post.id}/likes/${currentLike.id}`, {
+    fetch(`/likes/${currentLike.id}`, {
       method: "DELETE",
-    }).then(console.log);
+    })
+    setIsLiked(false);
+    setLikesCount(likesCount - 1);
   }
 
   function addComment(newComment) {
@@ -115,33 +159,23 @@ function PostCard({ post, deletePost, descriptionAfterUpdate }) {
           </figure>
 
           <div className="card-body">
-            {/* <h4>{likesCount.count}</h4> */}
-
             <div className="cardbtns">
-              {like ? (
-                <button
-                  onClick={(e) => {
-                    handlelikePost(e);
-                    setLike(false);
-                  }}
-                >
+              {!isLiked ? (
+                <button onClick={handleLike}>
                   <span class="material-symbols-outlined">&#9825;</span>
                 </button>
               ) : (
-                <button
-                  onClick={(e) => {
-                    handleUnlikePost(e);
-                    setLike(true);
-                  }}
-                >
+                <button onClick={handleDeleteLike}>
                   <span class="material-symbols-outlined">&#9829;</span>
                 </button>
               )}
+            
 
               <button onClick={handleDeletePost}>
                 <span class="material-symbols-outlined">delete</span>
               </button>
             </div>
+            <h4>Likes:{likesCount}</h4>
 
             <h2 className="card-title">{post.description}</h2>
 
