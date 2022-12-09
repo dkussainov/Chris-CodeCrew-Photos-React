@@ -1,28 +1,61 @@
 import Comment from "./Comment";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function PostCard({ post, deletePost, descriptionAfterUpdate }) {
   const [text, setText] = useState("");
-  const [postComments, setPostComments] = useState(post.comments)
-  const [showEditForm, setShowEditForm] = useState(false)
-  const [updateForm, setUpdateForm] = useState("")
-  const [like, setLike] = useState(true)
+  const [postComments, setPostComments] = useState(post.comments);
+  const [showEditForm, setShowEditForm] = useState(false);
+  const [updateForm, setUpdateForm] = useState("");
+  const [like, setLike] = useState(true);
+  const [currentLike, setCurrentLike] = useState({});
 
-  console.log("comments:", postComments)
 
+  console.log("comments:", postComments);
 
+  useEffect(() => {
+    fetch("/likes")
+      .then((r) => r.json())
+      .then((likes) => console.log(likes));
+  });
+
+  function handlelikePost(e) {
+    e.preventDefault();
+    fetch(`/posts/${post.id}/likes`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ liked: like }),
+    })
+      .then((r) => r.json())
+      .then((like) => setCurrentLike(like));
+  }
+
+  function handleUnlikePost(e) {
+    e.preventDefault();
+    fetch(`/posts/${post.id}/likes/${currentLike.id}`, {
+      method: "DELETE",
+    }).then(console.log);
+  }
 
   function addComment(newComment) {
     setPostComments([...postComments, newComment]);
   }
 
   function updateComments(deletedComment) {
-    const commentsAfterDelete = postComments.filter((comment) => comment.id !== deletedComment);
+    const commentsAfterDelete = postComments.filter(
+      (comment) => comment.id !== deletedComment
+    );
     setPostComments(commentsAfterDelete);
   }
 
   const commentsList = postComments.map((comment) => {
-    return <Comment key={comment.id} comment={comment} post={post} updateComments={updateComments}/>;
+    return (
+      <Comment
+        key={comment.id}
+        comment={comment}
+        post={post}
+        updateComments={updateComments}
+      />
+    );
   });
 
   function handleDeletePost() {
@@ -30,8 +63,6 @@ function PostCard({ post, deletePost, descriptionAfterUpdate }) {
       method: "DELETE",
     }).then(deletePost(post.id));
   }
-
-
 
   function handleSubmitComment(e) {
     e.preventDefault();
@@ -49,7 +80,7 @@ function PostCard({ post, deletePost, descriptionAfterUpdate }) {
   }
 
   function handlePostUpdate(e) {
-    e.preventDefault()
+    e.preventDefault();
     fetch(`/posts/${post.id}`, {
       method: "PATCH",
       headers: {
@@ -58,96 +89,111 @@ function PostCard({ post, deletePost, descriptionAfterUpdate }) {
       body: JSON.stringify({
         description: updateForm,
       }),
-    })
-    .then((r) => {
-      if (r.ok){
-        r.json().then((post) => descriptionAfterUpdate(post))
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((post) => descriptionAfterUpdate(post));
+      } else {
+        r.json().then((err) => console.log(err.errors));
       }
-      else {
-        r.json().then((err) => console.log(err.errors))
-      }
-    })
+    });
   }
-console.log("updateForm:", updateForm)
+  console.log("updateForm:", updateForm);
 
   return (
-  <div>
-    <br></br>
-    <br></br>
-    <div className="grid place-items-center">
-    <div className="card w-96 bg-base-100 shadow-xl">
-    
-    <figure>
-      <img src={post.image_url}
-        alt={post.description}
-        width="450"
-        height="500"
-      />
-    </figure>
+    <div>
+      <br></br>
+      <br></br>
+      <div className="grid place-items-center">
+        <div className="card w-96 bg-base-100 shadow-xl">
+          <figure>
+            <img
+              src={post.image_url}
+              alt={post.description}
+              width="450"
+              height="500"
+            />
+          </figure>
 
+          <div className="card-body">
+            {/* <h4>{likesCount.count}</h4> */}
 
-    <div className="card-body">
+            <div className="cardbtns">
+              {like ? (
+                <button
+                  onClick={(e) => {
+                    handlelikePost(e);
+                    setLike(false);
+                  }}
+                >
+                  <span class="material-symbols-outlined">&#9825;</span>
+                </button>
+              ) : (
+                <button
+                  onClick={(e) => {
+                    handleUnlikePost(e);
+                    setLike(true);
+                  }}
+                >
+                  <span class="material-symbols-outlined">&#9829;</span>
+                </button>
+              )}
 
-    <h4>{post.likes.map((like) => like.likes_num)}</h4>
+              <button onClick={handleDeletePost}>
+                <span class="material-symbols-outlined">delete</span>
+              </button>
+            </div>
 
-    <div className="cardbtns">
+            <h2 className="card-title">{post.description}</h2>
 
-    {like ? (
+            <div className="inputchange">
+              {showEditForm ? (
+                <form onSubmit={handlePostUpdate}>
+                  <input
+                    className="input input-bordered input-xs w-full max-w-xs"
+                    placeholder="Edit Caption"
+                    value={updateForm}
+                    onChange={(e) => setUpdateForm(e.target.value)}
+                  ></input>
+                  <button className="btn btn-xs" type="submit">
+                    Submit
+                  </button>
+                </form>
+              ) : (
+                <></>
+              )}
+              <button
+                type="button"
+                onClick={() => setShowEditForm(!showEditForm)}
+              >
+                {showEditForm === true ? (
+                  <span class="material-symbols-outlined"> close </span>
+                ) : (
+                  <span class="material-symbols-outlined">edit_note</span>
+                )}
+              </button>
+            </div>
 
-<button onClick={() => setLike(false)}>
-  <span class="material-symbols-outlined">&#9825;</span>
-</button>
-)
-: ( 
-  <button onClick={() => setLike(true)}>
-  <span class="material-symbols-outlined">&#9829;</span>
-</button>
-)}
-
-
-
-    <button onClick={handleDeletePost}><span class="material-symbols-outlined">delete</span></button>
-    </div>
-
-    <h2 className="card-title">{post.description}</h2>
-
-    <div className="inputchange">
-    {showEditForm ? (<form onSubmit={handlePostUpdate}>
-        <input
-        className="input input-bordered input-xs w-full max-w-xs"
-        placeholder="Edit Caption"
-        value={updateForm}
-        onChange={e=>setUpdateForm(e.target.value)}></input>
-        <button className="btn btn-xs" type="submit">Submit</button>
-      </form>) : <></>}
-      <button type="button" onClick={() => setShowEditForm(!showEditForm)}> 
-        { showEditForm === true ? <span class="material-symbols-outlined"> close </span>  : <span class="material-symbols-outlined">edit_note</span>}
-      </button>
+            <h4>Comments</h4>
+            {commentsList}
+            <form onSubmit={handleSubmitComment}>
+              <input
+                placeholder="comment"
+                className="input input-bordered input-s w-full max-w-xs"
+                name="comment"
+                type="text"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+              />
+              <button type="submit" className="btn btn-secondary justify-right">
+                Comment
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
-  
-
-    <h4>Comments</h4>
-      {commentsList}
-      <form onSubmit={handleSubmitComment}>
-        <input
-          placeholder="comment" className="input input-bordered input-s w-full max-w-xs"
-          name="comment"
-          type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <button type="submit" className="btn btn-secondary justify-right">Comment</button>
-      </form>
+      <br></br>
+      <br></br>
     </div>
-
-    </div>
-    </div>
-    <br></br>
-    <br></br>
-    </div>
-
-
-
   );
 }
 
