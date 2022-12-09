@@ -5,6 +5,9 @@ function HomePostCard({ post }) {
   const [text, setText] = useState("");
   const [postComments, setPostComments] = useState(post.comments);
   const [like, setLike] = useState(true)
+  console.log("like: ", like)
+
+  
 
   function addComment(newComment) {
     setPostComments([...postComments, newComment]);
@@ -66,6 +69,8 @@ function HomePostCard({ post }) {
                 )}
 
             </div>
+            <h4>Likes: </h4>
+
 
           <h1 className="card-title">
             {post.description}
