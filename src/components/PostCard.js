@@ -159,17 +159,19 @@ function PostCard({ post, deletePost, descriptionAfterUpdate, user }) {
           </figure>
 
           <div className="card-body">
-            <div className="cardbtns">
+            <div className="card-buttons">
+
               {!isLiked ? (
                 <button onClick={handleLike}>
-                  <span class="material-symbols-outlined">&#9825;</span>
+                  ♡
                 </button>
               ) : (
-                <button onClick={handleDeleteLike}>
-                  <span class="material-symbols-outlined">&#9829;</span>
+                <button className="filledheart" onClick={handleDeleteLike}>
+                  ♥️
                 </button>
               )}
             
+
 
               <button onClick={handleDeletePost}>
                 <span class="material-symbols-outlined">delete</span>

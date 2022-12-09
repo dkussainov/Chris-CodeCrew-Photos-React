@@ -35,8 +35,8 @@ function NewPost() {
   }
 
   return (
-  <div className="form-control w-full max-w-xs">
-
+  <div class="grid h-screen place-items-center">
+  <div className=" w-full max-w-xs">
     <form onSubmit={handleSubmit}>
 
       <label className="label"><span className="label-text">Image URL</span></label>
@@ -62,7 +62,10 @@ function NewPost() {
       <button type="submit" className="btn btn-wide">POST</button>
       
     </form>
+    <br></br>
+    <br></br>
   </div>
+</div>
   );
 }
 export default NewPost;
