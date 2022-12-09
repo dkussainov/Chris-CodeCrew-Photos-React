@@ -112,3 +112,15 @@ input{
 .usercom{
   font-weight: 600;
 }
+
+.card-buttons{
+  font-size: 30px;
+}
+
+.filledheart{
+  color: red;
+}
+
+.newpostdiv{
+  margin-top: 20px;
+}

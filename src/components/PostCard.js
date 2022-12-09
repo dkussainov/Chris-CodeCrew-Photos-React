@@ -118,25 +118,28 @@ function PostCard({ post, deletePost, descriptionAfterUpdate }) {
             {/* <h4>{likesCount.count}</h4> */}
 
             <div className="cardbtns">
+              <div className="card-buttons">
               {like ? (
                 <button
                   onClick={(e) => {
                     handlelikePost(e);
                     setLike(false);
                   }}
-                >
-                  <span class="material-symbols-outlined">&#9825;</span>
+                > 
+                ♡                
                 </button>
               ) : (
                 <button
+                  className="filledheart" 
                   onClick={(e) => {
                     handleUnlikePost(e);
                     setLike(true);
                   }}
                 >
-                  <span class="material-symbols-outlined">&#9829;</span>
+                  ♥️
                 </button>
               )}
+              </div>
 
               <button onClick={handleDeletePost}>
                 <span class="material-symbols-outlined">delete</span>

@@ -56,12 +56,12 @@ function HomePostCard({ post }) {
               {like ? (
 
                 <button onClick={() => setLike(false)}>
-                  <span class="material-symbols-outlined">&#9825;</span>
+                  ♡
                 </button>
               )
                 : ( 
-                  <button onClick={() => setLike(true)}>
-                  <span class="material-symbols-outlined">&#9829;</span>
+                  <button className="filledheart" onClick={() => setLike(true)}>
+                  ♥️
                 </button>
                 )}
 
